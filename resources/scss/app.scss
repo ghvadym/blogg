@@ -1,0 +1,46 @@
+@import "inc/mixins";
+
+main {
+  padding-top: 50px;
+}
+
+.card {
+  .card-body {
+    & > * {
+      margin: 5px 0;
+    }
+
+    .card-img {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 200px;
+    }
+
+    .card-img-full {
+      @include bgCover;
+      height: 500px;
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-block;
+      width: fit-content;
+    }
+  }
+}
+
+.archive {
+  .search-title {
+    & > * {
+      display: block;
+      margin: 15px 0;
+    }
+  }
+
+  .post-list {
+    & > * {
+      margin-bottom: 20px;
+    }
+  }
+}
