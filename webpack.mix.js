@@ -13,4 +13,14 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/scss/app.scss', 'public/css');
+    .sass('assets/scss/app.scss', 'assets/css')
+    .options({
+        processCssUrls: false,
+        postCss: [
+            require('autoprefixer')({
+                overrideBrowserslist: ['last 2 versions'],
+                cascade: false
+            })
+        ]
+    })
+    .sourceMaps(true, 'source-map');

@@ -1,14 +1,18 @@
-@extends('index', ['title' => 'Create post'])
+@extends('admin-post', ['title' => 'Create post'])
 
 @section('content')
     <div class="container">
-        <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
-            <h1>Create post</h1>
+        <div class="row" style="display: flex;justify-content: center">
+            <div class="col-md-10">
+                <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                    <h1>Create post</h1>
 
-            @include('pages.parts.form')
+                    @include('pages.parts.form')
 
-            <input type="submit" class="btn btn-outline-success" value="Create post">
-            @csrf
-        </form>
+                    <input type="submit" class="btn btn-success" value="Create post">
+                    @csrf
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

@@ -21,12 +21,18 @@ Route::namespace('App\Http\Controllers')->group(function(){
     Route::get('post/create', 'PostController@create')->name('post.create');
     Route::get('post/show/{id}', 'PostController@show')->name('post.show');
     Route::get('post/edit/{id}', 'PostController@edit')->name('post.edit');
+
     Route::patch('post/show/{id}', 'PostController@update')->name('post.update');
     Route::delete('post/{id}', 'PostController@destroy')->name('post.destroy');
     Route::post('post', 'PostController@store')->name('post.store');
 });
 
+//Body class
+View::composer('*', function ($view) {
+    $view_name = str_replace('.', '-', $view->getName());
+    View::share('view_name', $view_name);
+});
 
+//Authorize
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

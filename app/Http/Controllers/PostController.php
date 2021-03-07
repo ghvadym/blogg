@@ -23,7 +23,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         if($request->search) {
-            $posts = Post::join('users', 'author_id', '=', 'users.id') //Связываем author_id с users id
+            $posts = Post::join('users', 'author_id', '=', 'users.id')
                 ->where('title', 'like', '%'.$request->search.'%')
                 ->orWhere('desc', 'like', '%'.$request->search.'%')
                 ->orWhere('name', 'like', '%'.$request->search.'%')
@@ -32,9 +32,8 @@ class PostController extends Controller
             return view('pages.home', compact('posts'));
         }
 
-        $posts = Post::join('users', 'author_id', '=', 'users.id')
-            ->orderBy('posts.created_at', 'desc')
-            ->simplePaginate(10);
+        $posts = Post::orderBy('posts.created_at', 'desc')
+            ->paginate(15);
         return view('pages.home', compact('posts'));
     }
 
@@ -81,7 +80,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::join('users', 'author_id', '=', 'users.id')->find($id);
+        $post = Post::find($id);
 
         if(!$post) {
             return redirect()->route('post.home')->withErrors('You went in the wrong place');

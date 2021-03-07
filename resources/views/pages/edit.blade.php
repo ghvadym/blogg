@@ -1,4 +1,4 @@
-@extends('index', ['title' => 'Edit post - '.$post->title])
+@extends('admin-post', ['title' => 'Edit post - '.$post->title])
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
 
             @include('pages.parts.form')
 
-            <input type="submit" class="btn btn-outline-success" value="Update post">
+            <input type="submit" class="btn btn-success" value="Update post">
             @csrf
         </form>
     </div>
